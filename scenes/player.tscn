@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://x8pmw2aso8dv"]
+[gd_scene load_steps=3 format=3 uid="uid://x8pmw2aso8dv"]
+
+[ext_resource type="Texture2D" uid="uid://c7jy0yarad8fh" path="res://assets/PNG/Default size/tank_blue.png" id="1_bx8cq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4f78"]
+size = Vector2(40, 30)
 
 [node name="Player" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_q4f78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bx8cq")
