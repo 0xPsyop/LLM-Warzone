@@ -3,6 +3,10 @@ extends Node
 @onready var http = $HTTPRequest  # Reference HTTPRequest node
 
 var GROQ_API_KEY = ""
+var llama = "llama-3.3-70b-versatile"
+var qwen = "qwen-2.5-32b"
+#var deepseek = "deepseek-r1-distill-llama-70b"  it's thinking so kinda slow
+
 
 func _ready():
 	var config = ConfigFile.new()
@@ -10,9 +14,9 @@ func _ready():
 	if err == OK:
 		GROQ_API_KEY = config.get_value("secrets", "GROQ_API_KEY", "")
 		print("Loaded API Key:", GROQ_API_KEY)
-		send_groq_request()
+		send_groq_request(llama)
 
-func send_groq_request():
+func send_groq_request(model_name:String):
 	var url = "https://api.groq.com/openai/v1/chat/completions"
 	var headers = [
 		 "Authorization: Bearer " + GROQ_API_KEY,  
@@ -20,11 +24,11 @@ func send_groq_request():
 	]
 	
 	var payload = {
-		"model": "llama-3.3-70b-versatile",  # Specify the LLM model
+		"model": model_name,  # Specify the LLM model
 		"messages": [
 			{
 				 "role": "user",
-				"content": "Explain the importance of fast language models"
+				"content": "hey what's your model name"
 			}
 		]}
 	var json_payload = JSON.stringify(payload)  
