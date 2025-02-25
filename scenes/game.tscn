@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://dth46oqfyb6wk"]
+[gd_scene load_steps=5 format=4 uid="uid://dth46oqfyb6wk"]
 
 [ext_resource type="Texture2D" uid="uid://c2gst5a4k132j" path="res://assets/Tilesheet/terrainTiles_default.png" id="1_rx413"]
+[ext_resource type="PackedScene" uid="uid://c3jel2a1tmlim" path="res://scenes/game_manager.tscn" id="2_e0ba8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qn1l"]
 texture = ExtResource("1_rx413")
@@ -656,3 +657,5 @@ tile_map_data = PackedByteArray("AAD9//3/AAADAAQAAAD+//3/AAABAAQAAAD///7/AAADAAI
 tile_set = SubResource("TileSet_66m2b")
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="GameManager" parent="." instance=ExtResource("2_e0ba8")]

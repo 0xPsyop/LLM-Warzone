@@ -1,6 +1,10 @@
 extends Node
 
 @onready var http = $HTTPRequest  # Reference HTTPRequest node
+@onready var players_node = $Players  # Reference to "Players" Node
+const PLAYER_SCENE = preload("res://scenes/player.tscn")  # Load player scene
+
+var players = {}
 
 var GROQ_API_KEY = ""
 var llama = "llama-3.3-70b-versatile"
@@ -15,6 +19,13 @@ func _ready():
 		GROQ_API_KEY = config.get_value("secrets", "GROQ_API_KEY", "")
 		print("Loaded API Key:", GROQ_API_KEY)
 		send_groq_request(llama)
+
+func spawn_player(player_id: String, position: Vector2):
+	var new_player = PLAYER_SCENE.instantiate()
+	new_player.position = position
+	new_player.player_id = player_id
+	players_node.add_child(new_player)
+	players[player_id] = new_player
 
 func send_groq_request(model_name:String):
 	var url = "https://api.groq.com/openai/v1/chat/completions"
