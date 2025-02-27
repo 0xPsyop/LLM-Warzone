@@ -1,19 +1,22 @@
 extends CharacterBody2D
 
-@export var speed = 100.0  # Tank movement speed
+@export var speed = 20.0  # Tank movement speed
 var player_id = ""  # Unique ID set by GameManager
+var movement_direction = Vector2.ZERO  # Store movement direction
 
 func execute_command(command: String):
 	match command:
 		"forward":
-			velocity = Vector2(0, -speed)  # Move up
+			movement_direction = Vector2(0, -1)  # Move up
 		"backward":
-			velocity = Vector2(0, speed)  # Move down
+			movement_direction = Vector2(0, 1)  # Move down
 		"left":
-			velocity = Vector2(-speed, 0)  # Move left
+			movement_direction = Vector2(-1, 0)  # Move left
 		"right":
-			velocity = Vector2(speed, 0)  # Move right
+			movement_direction = Vector2(1, 0)  # Move right
 		_:
-			velocity = Vector2.ZERO  # Stop if unknown command
-	
-	move_and_slide()  # Apply movement
+			movement_direction = Vector2.ZERO  # Stop if unknown command
+
+func _physics_process(delta):
+	velocity = movement_direction * speed  # Apply movement
+	move_and_slide()
