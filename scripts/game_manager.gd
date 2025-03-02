@@ -3,6 +3,7 @@ extends Node
 @onready var http = $HTTPRequest  # Reference HTTPRequest node
 @onready var players_node = get_tree().get_current_scene().get_node("Players") # Reference to "Players" Node
 const PLAYER_SCENE = preload("res://scenes/player.tscn")  # Load player scene
+@onready var request_timer = $RequestTimer
 
 var players = {}
 
@@ -23,6 +24,7 @@ func _ready():
 		# Spawn player initially if not exists
 		if not players.has("llama"):
 			spawn_player("llama", Vector2(100, 100))
+		
 
 func spawn_player(player_id: String, position: Vector2):
 	var new_player = PLAYER_SCENE.instantiate()
@@ -42,7 +44,8 @@ func send_groq_request(model_name:String):
 		"model": model_name,  # Specify the LLM model
 		"messages": [
 			{"role": "system", "content": "You are controlling a tank in a 2D battlefield."},
-			{"role": "user", "content": "Choose the best movement. Respond with only 'forward', 'backward', 'left', or 'right'."}
+			{"role": "user", "content": "You are controlling a tank in a 2D battlefield and must respond with only one command. Your response must be strictly formatted as 'forward X', 'backward X', 'left Y', or 'right Y', where X is the distance in pixels and Y is the angle in degrees. Do not include explanations, context, or additional text—only output the command itself.Choose the most suitable action based on tactical positioning, ensuring a mix of different commands over time rather than repeating the same movement."}
+
 		]}
 	var json_payload = JSON.stringify(payload)  
 	
@@ -63,3 +66,7 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 			active_player.execute_command(command)
 	else:
 		print("API Request Failed. Code:", response_code)
+
+
+func _on_request_timer_timeout() -> void:
+	send_groq_request(llama)
