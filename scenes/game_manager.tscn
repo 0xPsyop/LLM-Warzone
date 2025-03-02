@@ -5,14 +5,24 @@
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_5ear7")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="HTTPRequestLlama" type="HTTPRequest" parent="."]
 use_threads = true
 body_size_limit = 10240
 timeout = 5.0
 
-[node name="RequestTimer" type="Timer" parent="."]
+[node name="RequestTimerLlama" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
-[connection signal="timeout" from="RequestTimer" to="." method="_on_request_timer_timeout"]
+[node name="RequestTimerQwen" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="HTTPRequestQwen" type="HTTPRequest" parent="."]
+use_threads = true
+body_size_limit = 10240
+
+[connection signal="request_completed" from="HTTPRequestLlama" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="RequestTimerLlama" to="." method="_on_request_timer_llama_timeout"]
+[connection signal="timeout" from="RequestTimerQwen" to="." method="_on_request_timer_qwen_timeout"]
+[connection signal="request_completed" from="HTTPRequestQwen" to="." method="_on_http_request_qwen_request_completed"]
