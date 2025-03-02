@@ -5485,3 +5485,4 @@ tile_set = SubResource("TileSet_8da48")
 [node name="Players" type="Node2D" parent="."]
 
 [node name="GameManager" parent="." instance=ExtResource("2_e0ba8")]
+position = Vector2(0, 1)

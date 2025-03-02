@@ -48,7 +48,7 @@ func send_groq_request(model_name: String, http_node):
 		"model": model_name,  # Specify the LLM model
 		"messages": [
 			{"role": "system", "content": "You are controlling a tank in a 2D battlefield."},
-			{"role": "user", "content": "You are controlling a tank in a 2D battlefield. Respond with a single vector-based movement command in the format: move X,Y where X is the horizontal component (-100 to +100) and Y is the vertical component (-100 to +100). Positive X moves right, negative X moves left, positive Y moves up, negative Y moves down. The magnitude of your vector should typically be between 10 and 100. Your task is to navigate strategically. Generate completely random vector combinations for unpredictable movement. Do not include any explanations or additional text - output only the command itself."}
+			{"role": "user", "content": "You are controlling a tank in a 2D battlefield. Respond with a single vector-based movement command in the format: move X,Y where X is the horizontal component (0 to +500) and Y is the vertical component (0 to +500). Positive X moves right, negative X moves left, positive Y moves up, negative Y moves down. The magnitude of your vector should typically be between 10 and 100. Your task is to navigate strategically. Generate completely random vector combinations for unpredictable movement. Do not include any explanations or additional text - output only the command itself."}
 		]}
 	var json_payload = JSON.stringify(payload)  
 	
