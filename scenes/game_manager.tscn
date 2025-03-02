@@ -10,4 +10,9 @@ use_threads = true
 body_size_limit = 10240
 timeout = 5.0
 
+[node name="RequestTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="RequestTimer" to="." method="_on_request_timer_timeout"]

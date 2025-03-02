@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=4 uid="uid://dth46oqfyb6wk"]
 
-[ext_resource type="Texture2D" uid="uid://0ioem7o7mbsl" path="res://assets/Tilesheet/terrainTiles_default.png" id="1_rx413"]
+[ext_resource type="Texture2D" uid="uid://cod58rkn43rro" path="res://assets/Tilesheet/terrainTiles_default.png" id="1_rx413"]
 [ext_resource type="PackedScene" uid="uid://c3jel2a1tmlim" path="res://scenes/game_manager.tscn" id="2_e0ba8"]
-[ext_resource type="Texture2D" uid="uid://cvniwaahuqfg" path="res://assets/Spritesheet/onlyObjects_default.png" id="2_o7u20"]
-[ext_resource type="Texture2D" uid="uid://rci7mjuduwex" path="res://assets/Spritesheet/allSprites_retina.png" id="3_1tta2"]
+[ext_resource type="Texture2D" uid="uid://tkj4tjxpxmqu" path="res://assets/Spritesheet/onlyObjects_default.png" id="2_o7u20"]
+[ext_resource type="Texture2D" uid="uid://b2j7y8tqdyqd5" path="res://assets/Spritesheet/allSprites_retina.png" id="3_1tta2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncs4w"]
 texture = ExtResource("1_rx413")
